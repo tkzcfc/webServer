@@ -1,0 +1,295 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="lua-module">
+      <UniqueIdentifier>{0d2f9a1a-2b70-427b-81c3-14bb1cf883aa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lua-module\lfs">
+      <UniqueIdentifier>{d3e8fa34-0764-4227-be68-3d9309d73433}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="dependencies">
+      <UniqueIdentifier>{4890595f-2e6b-48c4-873e-040125de302d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="dependencies\mongoose">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="dependencies\lua">
+      <UniqueIdentifier>{c5418100-8380-4a0d-b6ee-9f8f41f64c4e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="dependencies\tolua">
+      <UniqueIdentifier>{b7b9f66b-6cb2-49a5-9e60-f02069fb36e3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="dependencies\tolua\lib">
+      <UniqueIdentifier>{5b9da50a-ae90-48ff-8fda-00c2f296e4b1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="dependencies\tolua\include">
+      <UniqueIdentifier>{fd717a56-d898-4fb9-bc74-86b451b29299}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="utilities">
+      <UniqueIdentifier>{e43c89ce-e735-4d9c-862b-96408d8ece38}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="lua-module\lfs\lfs.h">
+      <Filter>lua-module\lfs</Filter>
+    </ClInclude>
+    <ClInclude Include="..\dependencies\lua\src\ldebug.h">
+      <Filter>dependencies\lua</Filter>
+    </ClInclude>
+    <ClInclude Include="..\dependencies\lua\src\ldo.h">
+      <Filter>dependencies\lua</Filter>
+    </ClInclude>
+    <ClInclude Include="..\dependencies\lua\src\lfunc.h">
+      <Filter>dependencies\lua</Filter>
+    </ClInclude>
+    <ClInclude Include="..\dependencies\lua\src\lgc.h">
+      <Filter>dependencies\lua</Filter>
+    </ClInclude>
+    <ClInclude Include="..\dependencies\lua\src\llex.h">
+      <Filter>dependencies\lua</Filter>
+    </ClInclude>
+    <ClInclude Include="..\dependencies\lua\src\llimits.h">
+      <Filter>dependencies\lua</Filter>
+    </ClInclude>
+    <ClInclude Include="..\dependencies\lua\src\lmem.h">
+      <Filter>dependencies\lua</Filter>
+    </ClInclude>
+    <ClInclude Include="..\dependencies\lua\src\lobject.h">
+      <Filter>dependencies\lua</Filter>
+    </ClInclude>
+    <ClInclude Include="..\dependencies\lua\src\lopcodes.h">
+      <Filter>dependencies\lua</Filter>
+    </ClInclude>
+    <ClInclude Include="..\dependencies\lua\src\lparser.h">
+      <Filter>dependencies\lua</Filter>
+    </ClInclude>
+    <ClInclude Include="..\dependencies\lua\src\lstate.h">
+      <Filter>dependencies\lua</Filter>
+    </ClInclude>
+    <ClInclude Include="..\dependencies\lua\src\lstring.h">
+      <Filter>dependencies\lua</Filter>
+    </ClInclude>
+    <ClInclude Include="..\dependencies\lua\src\ltable.h">
+      <Filter>dependencies\lua</Filter>
+    </ClInclude>
+    <ClInclude Include="..\dependencies\lua\src\ltm.h">
+      <Filter>dependencies\lua</Filter>
+    </ClInclude>
+    <ClInclude Include="..\dependencies\lua\src\lua.h">
+      <Filter>dependencies\lua</Filter>
+    </ClInclude>
+    <ClInclude Include="..\dependencies\lua\src\lua.hpp">
+      <Filter>dependencies\lua</Filter>
+    </ClInclude>
+    <ClInclude Include="..\dependencies\lua\src\luaconf.h">
+      <Filter>dependencies\lua</Filter>
+    </ClInclude>
+    <ClInclude Include="..\dependencies\lua\src\lualib.h">
+      <Filter>dependencies\lua</Filter>
+    </ClInclude>
+    <ClInclude Include="..\dependencies\lua\src\lundump.h">
+      <Filter>dependencies\lua</Filter>
+    </ClInclude>
+    <ClInclude Include="..\dependencies\lua\src\lvm.h">
+      <Filter>dependencies\lua</Filter>
+    </ClInclude>
+    <ClInclude Include="..\dependencies\lua\src\lzio.h">
+      <Filter>dependencies\lua</Filter>
+    </ClInclude>
+    <ClInclude Include="..\dependencies\lua\src\lapi.h">
+      <Filter>dependencies\lua</Filter>
+    </ClInclude>
+    <ClInclude Include="..\dependencies\lua\src\lauxlib.h">
+      <Filter>dependencies\lua</Filter>
+    </ClInclude>
+    <ClInclude Include="..\dependencies\lua\src\lcode.h">
+      <Filter>dependencies\lua</Filter>
+    </ClInclude>
+    <ClInclude Include="..\dependencies\mongoose\mongoose.h">
+      <Filter>dependencies\mongoose</Filter>
+    </ClInclude>
+    <ClInclude Include="..\dependencies\tolua++\lib\tolua_event.h">
+      <Filter>dependencies\tolua\lib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\dependencies\tolua++\include\tolua++.h">
+      <Filter>dependencies\tolua\include</Filter>
+    </ClInclude>
+    <ClInclude Include="utilities\tolua_fix.h">
+      <Filter>utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="utilities\tools.h">
+      <Filter>utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="utilities\LuaFunction.hpp">
+      <Filter>utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="utilities\md5.h">
+      <Filter>utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="utilities\log.h">
+      <Filter>utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="linenoise.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="webServer.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="lua-module\web_tolua.h">
+      <Filter>lua-module</Filter>
+    </ClInclude>
+    <ClInclude Include="cmd.h">
+      <Filter>src</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="main.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="lua-module\lfs\lfs.c">
+      <Filter>lua-module\lfs</Filter>
+    </ClCompile>
+    <ClCompile Include="..\dependencies\lua\src\ldo.c">
+      <Filter>dependencies\lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\dependencies\lua\src\ldump.c">
+      <Filter>dependencies\lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\dependencies\lua\src\lfunc.c">
+      <Filter>dependencies\lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\dependencies\lua\src\lgc.c">
+      <Filter>dependencies\lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\dependencies\lua\src\linit.c">
+      <Filter>dependencies\lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\dependencies\lua\src\liolib.c">
+      <Filter>dependencies\lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\dependencies\lua\src\llex.c">
+      <Filter>dependencies\lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\dependencies\lua\src\lmathlib.c">
+      <Filter>dependencies\lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\dependencies\lua\src\lmem.c">
+      <Filter>dependencies\lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\dependencies\lua\src\loadlib.c">
+      <Filter>dependencies\lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\dependencies\lua\src\lobject.c">
+      <Filter>dependencies\lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\dependencies\lua\src\lopcodes.c">
+      <Filter>dependencies\lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\dependencies\lua\src\loslib.c">
+      <Filter>dependencies\lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\dependencies\lua\src\lparser.c">
+      <Filter>dependencies\lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\dependencies\lua\src\lstate.c">
+      <Filter>dependencies\lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\dependencies\lua\src\lstring.c">
+      <Filter>dependencies\lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\dependencies\lua\src\lstrlib.c">
+      <Filter>dependencies\lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\dependencies\lua\src\ltable.c">
+      <Filter>dependencies\lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\dependencies\lua\src\ltablib.c">
+      <Filter>dependencies\lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\dependencies\lua\src\ltm.c">
+      <Filter>dependencies\lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\dependencies\lua\src\lundump.c">
+      <Filter>dependencies\lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\dependencies\lua\src\lvm.c">
+      <Filter>dependencies\lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\dependencies\lua\src\lzio.c">
+      <Filter>dependencies\lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\dependencies\lua\src\print.c">
+      <Filter>dependencies\lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\dependencies\lua\src\lapi.c">
+      <Filter>dependencies\lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\dependencies\lua\src\lauxlib.c">
+      <Filter>dependencies\lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\dependencies\lua\src\lbaselib.c">
+      <Filter>dependencies\lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\dependencies\lua\src\lcode.c">
+      <Filter>dependencies\lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\dependencies\lua\src\ldblib.c">
+      <Filter>dependencies\lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\dependencies\lua\src\ldebug.c">
+      <Filter>dependencies\lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\dependencies\mongoose\mongoose.c">
+      <Filter>dependencies\mongoose</Filter>
+    </ClCompile>
+    <ClCompile Include="..\dependencies\tolua++\lib\tolua_is.c">
+      <Filter>dependencies\tolua\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\dependencies\tolua++\lib\tolua_map.c">
+      <Filter>dependencies\tolua\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\dependencies\tolua++\lib\tolua_push.c">
+      <Filter>dependencies\tolua\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\dependencies\tolua++\lib\tolua_to.c">
+      <Filter>dependencies\tolua\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\dependencies\tolua++\lib\tolua_event.c">
+      <Filter>dependencies\tolua\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="utilities\tolua_fix.cpp">
+      <Filter>utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="utilities\tools.cpp">
+      <Filter>utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="utilities\LuaFunction.cpp">
+      <Filter>utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="utilities\md5.cpp">
+      <Filter>utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="utilities\log.cpp">
+      <Filter>utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="webServer.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="lua-module\web_tolua.cpp">
+      <Filter>lua-module</Filter>
+    </ClCompile>
+    <ClCompile Include="cmd.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\dependencies\lua\src\Makefile">
+      <Filter>dependencies\lua</Filter>
+    </None>
+  </ItemGroup>
+</Project>

@@ -1,0 +1,242 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{C4B1CF87-0D4F-4988-BC6A-18E84B6C1936}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>mongoose</RootNamespace>
+    <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
+    <ProjectName>webServer</ProjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v140</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v140</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v140</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v140</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+    <IncludePath>../dependencies/tolua++/lib;../dependencies/tolua++/include;../dependencies/mongoose;utilities;lua-module;../dependencies/lua/src;$(IncludePath)</IncludePath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <LinkIncremental>true</LinkIncremental>
+    <IncludePath>tolua++/include;tolua++/lib;lua/src/;$(IncludePath)</IncludePath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+    <IncludePath>../dependencies/tolua++/lib;../dependencies/tolua++/include;../dependencies/mongoose;utilities;lua-module;../dependencies/lua/src;$(IncludePath)</IncludePath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <LinkIncremental>false</LinkIncremental>
+    <IncludePath>tolua++/include;tolua++/lib;lua/src/;$(IncludePath)</IncludePath>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;TOLUA_RELEASE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClInclude Include="..\dependencies\lua\src\lapi.h" />
+    <ClInclude Include="..\dependencies\lua\src\lauxlib.h" />
+    <ClInclude Include="..\dependencies\lua\src\lcode.h" />
+    <ClInclude Include="..\dependencies\lua\src\ldebug.h" />
+    <ClInclude Include="..\dependencies\lua\src\ldo.h" />
+    <ClInclude Include="..\dependencies\lua\src\lfunc.h" />
+    <ClInclude Include="..\dependencies\lua\src\lgc.h" />
+    <ClInclude Include="..\dependencies\lua\src\llex.h" />
+    <ClInclude Include="..\dependencies\lua\src\llimits.h" />
+    <ClInclude Include="..\dependencies\lua\src\lmem.h" />
+    <ClInclude Include="..\dependencies\lua\src\lobject.h" />
+    <ClInclude Include="..\dependencies\lua\src\lopcodes.h" />
+    <ClInclude Include="..\dependencies\lua\src\lparser.h" />
+    <ClInclude Include="..\dependencies\lua\src\lstate.h" />
+    <ClInclude Include="..\dependencies\lua\src\lstring.h" />
+    <ClInclude Include="..\dependencies\lua\src\ltable.h" />
+    <ClInclude Include="..\dependencies\lua\src\ltm.h" />
+    <ClInclude Include="..\dependencies\lua\src\lua.h" />
+    <ClInclude Include="..\dependencies\lua\src\lua.hpp" />
+    <ClInclude Include="..\dependencies\lua\src\luaconf.h" />
+    <ClInclude Include="..\dependencies\lua\src\lualib.h" />
+    <ClInclude Include="..\dependencies\lua\src\lundump.h" />
+    <ClInclude Include="..\dependencies\lua\src\lvm.h" />
+    <ClInclude Include="..\dependencies\lua\src\lzio.h" />
+    <ClInclude Include="..\dependencies\mongoose\mongoose.h" />
+    <ClInclude Include="..\dependencies\tolua++\include\tolua++.h" />
+    <ClInclude Include="..\dependencies\tolua++\lib\tolua_event.h" />
+    <ClInclude Include="cmd.h" />
+    <ClInclude Include="linenoise.h" />
+    <ClInclude Include="lua-module\lfs\lfs.h" />
+    <ClInclude Include="lua-module\web_tolua.h" />
+    <ClInclude Include="webServer.h" />
+    <ClInclude Include="utilities\log.h" />
+    <ClInclude Include="utilities\LuaFunction.hpp" />
+    <ClInclude Include="utilities\md5.h" />
+    <ClInclude Include="utilities\tolua_fix.h" />
+    <ClInclude Include="utilities\tools.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\dependencies\lua\src\lapi.c" />
+    <ClCompile Include="..\dependencies\lua\src\lauxlib.c" />
+    <ClCompile Include="..\dependencies\lua\src\lbaselib.c" />
+    <ClCompile Include="..\dependencies\lua\src\lcode.c" />
+    <ClCompile Include="..\dependencies\lua\src\ldblib.c" />
+    <ClCompile Include="..\dependencies\lua\src\ldebug.c" />
+    <ClCompile Include="..\dependencies\lua\src\ldo.c" />
+    <ClCompile Include="..\dependencies\lua\src\ldump.c" />
+    <ClCompile Include="..\dependencies\lua\src\lfunc.c" />
+    <ClCompile Include="..\dependencies\lua\src\lgc.c" />
+    <ClCompile Include="..\dependencies\lua\src\linit.c" />
+    <ClCompile Include="..\dependencies\lua\src\liolib.c" />
+    <ClCompile Include="..\dependencies\lua\src\llex.c" />
+    <ClCompile Include="..\dependencies\lua\src\lmathlib.c" />
+    <ClCompile Include="..\dependencies\lua\src\lmem.c" />
+    <ClCompile Include="..\dependencies\lua\src\loadlib.c" />
+    <ClCompile Include="..\dependencies\lua\src\lobject.c" />
+    <ClCompile Include="..\dependencies\lua\src\lopcodes.c" />
+    <ClCompile Include="..\dependencies\lua\src\loslib.c" />
+    <ClCompile Include="..\dependencies\lua\src\lparser.c" />
+    <ClCompile Include="..\dependencies\lua\src\lstate.c" />
+    <ClCompile Include="..\dependencies\lua\src\lstring.c" />
+    <ClCompile Include="..\dependencies\lua\src\lstrlib.c" />
+    <ClCompile Include="..\dependencies\lua\src\ltable.c" />
+    <ClCompile Include="..\dependencies\lua\src\ltablib.c" />
+    <ClCompile Include="..\dependencies\lua\src\ltm.c" />
+    <ClCompile Include="..\dependencies\lua\src\lundump.c" />
+    <ClCompile Include="..\dependencies\lua\src\lvm.c" />
+    <ClCompile Include="..\dependencies\lua\src\lzio.c" />
+    <ClCompile Include="..\dependencies\lua\src\print.c" />
+    <ClCompile Include="..\dependencies\mongoose\mongoose.c" />
+    <ClCompile Include="..\dependencies\tolua++\lib\tolua_event.c" />
+    <ClCompile Include="..\dependencies\tolua++\lib\tolua_is.c" />
+    <ClCompile Include="..\dependencies\tolua++\lib\tolua_map.c" />
+    <ClCompile Include="..\dependencies\tolua++\lib\tolua_push.c" />
+    <ClCompile Include="..\dependencies\tolua++\lib\tolua_to.c" />
+    <ClCompile Include="cmd.cpp" />
+    <ClCompile Include="lua-module\lfs\lfs.c" />
+    <ClCompile Include="lua-module\web_tolua.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="webServer.cpp" />
+    <ClCompile Include="utilities\log.cpp" />
+    <ClCompile Include="utilities\LuaFunction.cpp" />
+    <ClCompile Include="utilities\md5.cpp" />
+    <ClCompile Include="utilities\tolua_fix.cpp" />
+    <ClCompile Include="utilities\tools.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\dependencies\lua\src\Makefile" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

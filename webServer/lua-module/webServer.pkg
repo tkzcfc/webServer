@@ -1,0 +1,37 @@
+$#include "../webServer.h"
+
+
+
+enum METHOD
+{
+	GET,
+	PUT,
+	POST,
+	ALL
+};
+
+class webServer
+{
+public:
+
+	bool restart();
+
+	void stop();
+
+	bool register_call(METHOD method, const std::string& uri, LuaFunction call);
+
+	bool register_call(METHOD method, const std::string& uri, call_func call);
+
+	void unregister_call(METHOD method, const std::string& uri);
+	
+	void unregister_all();
+
+	void send_response(mg_connection *connection, const std::string& response);
+
+	METHOD get_method(http_message *http_req);
+	
+	void print_log(const std::string& logstr);
+	
+	void goto_web(mg_connection* connection, http_message* http_req);
+};
+

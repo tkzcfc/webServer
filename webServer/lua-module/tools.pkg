@@ -1,0 +1,38 @@
+$#include "tools.h"
+$using namespace tools;
+
+
+/*
+ * Mongoose connection.
+ */
+struct mg_connection {
+};
+
+struct http_message {
+};
+
+
+class http_msg
+{
+public:
+	http_msg(const http_message& msg);
+	
+	http_message* get_http_message_ptr();
+	
+	std::string message;
+	std::string body;
+	std::string method;
+	std::string uri;
+	std::string proto;
+	int resp_code;
+	std::string resp_status_msg;
+	std::string query_string;
+	std::string header_names[MG_MAX_HTTP_HEADERS];
+	std::string header_values[MG_MAX_HTTP_HEADERS];
+};
+
+void print_http_message(http_message* msg);
+
+std::string get_http_var(const std::string& buff, const std::string& name);
+
+std::string create_activ_code(int curIndex);
