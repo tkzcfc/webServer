@@ -26,17 +26,49 @@
     <Filter Include="dependencies\tolua\include">
       <UniqueIdentifier>{fd717a56-d898-4fb9-bc74-86b451b29299}</UniqueIdentifier>
     </Filter>
-    <Filter Include="utilities">
-      <UniqueIdentifier>{e43c89ce-e735-4d9c-862b-96408d8ece38}</UniqueIdentifier>
+    <Filter Include="include">
+      <UniqueIdentifier>{f6e833ab-afb1-4ae1-abd1-f762c62dc0f1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\utilities">
+      <UniqueIdentifier>{77cd6482-fc02-4aac-aab1-31757c6cf0cd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="test">
+      <UniqueIdentifier>{18f574b6-562a-4093-a1f6-520b320e83d5}</UniqueIdentifier>
     </Filter>
     <Filter Include="src">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+      <UniqueIdentifier>{284e611e-c090-449a-9bf0-5a9848fd4184}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\utilities">
+      <UniqueIdentifier>{21238654-fb52-4f2a-89fe-4a679656f433}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="lua-module\lfs\lfs.h">
+    <ClInclude Include="include\webServer.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\utilities\LuaFunction.hpp">
+      <Filter>include\utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="include\utilities\tolua_fix.h">
+      <Filter>include\utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="include\utilities\tools.h">
+      <Filter>include\utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="include\utilities\log.h">
+      <Filter>include\utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="src\lua-module\lfs\lfs.h">
       <Filter>lua-module\lfs</Filter>
+    </ClInclude>
+    <ClInclude Include="src\lua-module\LuaInlayCode.h">
+      <Filter>lua-module</Filter>
+    </ClInclude>
+    <ClInclude Include="src\lua-module\web_tolua.h">
+      <Filter>lua-module</Filter>
+    </ClInclude>
+    <ClInclude Include="..\dependencies\lua\src\lcode.h">
+      <Filter>dependencies\lua</Filter>
     </ClInclude>
     <ClInclude Include="..\dependencies\lua\src\ldebug.h">
       <Filter>dependencies\lua</Filter>
@@ -107,52 +139,58 @@
     <ClInclude Include="..\dependencies\lua\src\lauxlib.h">
       <Filter>dependencies\lua</Filter>
     </ClInclude>
-    <ClInclude Include="..\dependencies\lua\src\lcode.h">
-      <Filter>dependencies\lua</Filter>
-    </ClInclude>
     <ClInclude Include="..\dependencies\mongoose\mongoose.h">
       <Filter>dependencies\mongoose</Filter>
-    </ClInclude>
-    <ClInclude Include="..\dependencies\tolua++\lib\tolua_event.h">
-      <Filter>dependencies\tolua\lib</Filter>
     </ClInclude>
     <ClInclude Include="..\dependencies\tolua++\include\tolua++.h">
       <Filter>dependencies\tolua\include</Filter>
     </ClInclude>
-    <ClInclude Include="utilities\tolua_fix.h">
-      <Filter>utilities</Filter>
+    <ClInclude Include="..\dependencies\tolua++\lib\tolua_event.h">
+      <Filter>dependencies\tolua\lib</Filter>
     </ClInclude>
-    <ClInclude Include="utilities\tools.h">
-      <Filter>utilities</Filter>
+    <ClInclude Include="include\webServerDef.h">
+      <Filter>include</Filter>
     </ClInclude>
-    <ClInclude Include="utilities\LuaFunction.hpp">
-      <Filter>utilities</Filter>
+    <ClInclude Include="test\linenoise.h">
+      <Filter>test</Filter>
     </ClInclude>
-    <ClInclude Include="utilities\md5.h">
-      <Filter>utilities</Filter>
-    </ClInclude>
-    <ClInclude Include="utilities\log.h">
-      <Filter>utilities</Filter>
-    </ClInclude>
-    <ClInclude Include="linenoise.h">
-      <Filter>src</Filter>
-    </ClInclude>
-    <ClInclude Include="webServer.h">
-      <Filter>src</Filter>
-    </ClInclude>
-    <ClInclude Include="lua-module\web_tolua.h">
-      <Filter>lua-module</Filter>
-    </ClInclude>
-    <ClInclude Include="cmd.h">
-      <Filter>src</Filter>
+    <ClInclude Include="test\cmd.h">
+      <Filter>test</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="main.cpp">
+    <ClCompile Include="src\utilities\tolua_fix.cpp">
+      <Filter>src\utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="src\utilities\tools.cpp">
+      <Filter>src\utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="src\utilities\log.cpp">
+      <Filter>src\utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="src\utilities\LuaFunction.cpp">
+      <Filter>src\utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="src\webServer.cpp">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="lua-module\lfs\lfs.c">
+    <ClCompile Include="src\lua-module\lfs\lfs.c">
       <Filter>lua-module\lfs</Filter>
+    </ClCompile>
+    <ClCompile Include="src\lua-module\web_tolua.cpp">
+      <Filter>lua-module</Filter>
+    </ClCompile>
+    <ClCompile Include="src\lua-module\LuaInlayCode.cpp">
+      <Filter>lua-module</Filter>
+    </ClCompile>
+    <ClCompile Include="..\dependencies\lua\src\lcode.c">
+      <Filter>dependencies\lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\dependencies\lua\src\ldblib.c">
+      <Filter>dependencies\lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\dependencies\lua\src\ldebug.c">
+      <Filter>dependencies\lua</Filter>
     </ClCompile>
     <ClCompile Include="..\dependencies\lua\src\ldo.c">
       <Filter>dependencies\lua</Filter>
@@ -235,15 +273,6 @@
     <ClCompile Include="..\dependencies\lua\src\lbaselib.c">
       <Filter>dependencies\lua</Filter>
     </ClCompile>
-    <ClCompile Include="..\dependencies\lua\src\lcode.c">
-      <Filter>dependencies\lua</Filter>
-    </ClCompile>
-    <ClCompile Include="..\dependencies\lua\src\ldblib.c">
-      <Filter>dependencies\lua</Filter>
-    </ClCompile>
-    <ClCompile Include="..\dependencies\lua\src\ldebug.c">
-      <Filter>dependencies\lua</Filter>
-    </ClCompile>
     <ClCompile Include="..\dependencies\mongoose\mongoose.c">
       <Filter>dependencies\mongoose</Filter>
     </ClCompile>
@@ -262,29 +291,11 @@
     <ClCompile Include="..\dependencies\tolua++\lib\tolua_event.c">
       <Filter>dependencies\tolua\lib</Filter>
     </ClCompile>
-    <ClCompile Include="utilities\tolua_fix.cpp">
-      <Filter>utilities</Filter>
+    <ClCompile Include="test\main.cpp">
+      <Filter>test</Filter>
     </ClCompile>
-    <ClCompile Include="utilities\tools.cpp">
-      <Filter>utilities</Filter>
-    </ClCompile>
-    <ClCompile Include="utilities\LuaFunction.cpp">
-      <Filter>utilities</Filter>
-    </ClCompile>
-    <ClCompile Include="utilities\md5.cpp">
-      <Filter>utilities</Filter>
-    </ClCompile>
-    <ClCompile Include="utilities\log.cpp">
-      <Filter>utilities</Filter>
-    </ClCompile>
-    <ClCompile Include="webServer.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
-    <ClCompile Include="lua-module\web_tolua.cpp">
-      <Filter>lua-module</Filter>
-    </ClCompile>
-    <ClCompile Include="cmd.cpp">
-      <Filter>src</Filter>
+    <ClCompile Include="test\cmd.cpp">
+      <Filter>test</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

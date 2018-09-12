@@ -33,7 +33,7 @@
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v140</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
@@ -72,19 +72,21 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>../dependencies/tolua++/lib;../dependencies/tolua++/include;../dependencies/mongoose;utilities;lua-module;../dependencies/lua/src;$(IncludePath)</IncludePath>
+    <IncludePath>../dependencies/tolua++/lib;../dependencies/tolua++/include;../dependencies/lua/src;../dependencies/mongoose;include/utilities;include;src/lua-module;$(IncludePath)</IncludePath>
+    <OutDir>$(SolutionDir)Bin\$(Configuration)\</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>tolua++/include;tolua++/lib;lua/src/;$(IncludePath)</IncludePath>
+    <IncludePath>../dependencies/tolua++/lib;../dependencies/tolua++/include;../dependencies/lua/src;../dependencies/mongoose;include/utilities;include;src/lua-module;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>../dependencies/tolua++/lib;../dependencies/tolua++/include;../dependencies/mongoose;utilities;lua-module;../dependencies/lua/src;$(IncludePath)</IncludePath>
+    <IncludePath>../dependencies/tolua++/lib;../dependencies/tolua++/include;../dependencies/lua/src;../dependencies/mongoose;include/utilities;include;src/lua-module;$(IncludePath)</IncludePath>
+    <OutDir>$(SolutionDir)Bin\$(Configuration)\</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>tolua++/include;tolua++/lib;lua/src/;$(IncludePath)</IncludePath>
+    <IncludePath>../dependencies/tolua++/lib;../dependencies/tolua++/include;../dependencies/lua/src;../dependencies/mongoose;include/utilities;include;src/lua-module;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -174,16 +176,17 @@
     <ClInclude Include="..\dependencies\mongoose\mongoose.h" />
     <ClInclude Include="..\dependencies\tolua++\include\tolua++.h" />
     <ClInclude Include="..\dependencies\tolua++\lib\tolua_event.h" />
-    <ClInclude Include="cmd.h" />
-    <ClInclude Include="linenoise.h" />
-    <ClInclude Include="lua-module\lfs\lfs.h" />
-    <ClInclude Include="lua-module\web_tolua.h" />
-    <ClInclude Include="webServer.h" />
-    <ClInclude Include="utilities\log.h" />
-    <ClInclude Include="utilities\LuaFunction.hpp" />
-    <ClInclude Include="utilities\md5.h" />
-    <ClInclude Include="utilities\tolua_fix.h" />
-    <ClInclude Include="utilities\tools.h" />
+    <ClInclude Include="include\utilities\log.h" />
+    <ClInclude Include="include\utilities\LuaFunction.hpp" />
+    <ClInclude Include="include\utilities\tolua_fix.h" />
+    <ClInclude Include="include\utilities\tools.h" />
+    <ClInclude Include="include\webServer.h" />
+    <ClInclude Include="include\webServerDef.h" />
+    <ClInclude Include="src\lua-module\lfs\lfs.h" />
+    <ClInclude Include="src\lua-module\LuaInlayCode.h" />
+    <ClInclude Include="src\lua-module\web_tolua.h" />
+    <ClInclude Include="test\cmd.h" />
+    <ClInclude Include="test\linenoise.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\dependencies\lua\src\lapi.c" />
@@ -222,16 +225,16 @@
     <ClCompile Include="..\dependencies\tolua++\lib\tolua_map.c" />
     <ClCompile Include="..\dependencies\tolua++\lib\tolua_push.c" />
     <ClCompile Include="..\dependencies\tolua++\lib\tolua_to.c" />
-    <ClCompile Include="cmd.cpp" />
-    <ClCompile Include="lua-module\lfs\lfs.c" />
-    <ClCompile Include="lua-module\web_tolua.cpp" />
-    <ClCompile Include="main.cpp" />
-    <ClCompile Include="webServer.cpp" />
-    <ClCompile Include="utilities\log.cpp" />
-    <ClCompile Include="utilities\LuaFunction.cpp" />
-    <ClCompile Include="utilities\md5.cpp" />
-    <ClCompile Include="utilities\tolua_fix.cpp" />
-    <ClCompile Include="utilities\tools.cpp" />
+    <ClCompile Include="src\lua-module\lfs\lfs.c" />
+    <ClCompile Include="src\lua-module\LuaInlayCode.cpp" />
+    <ClCompile Include="src\lua-module\web_tolua.cpp" />
+    <ClCompile Include="src\utilities\log.cpp" />
+    <ClCompile Include="src\utilities\LuaFunction.cpp" />
+    <ClCompile Include="src\utilities\tolua_fix.cpp" />
+    <ClCompile Include="src\utilities\tools.cpp" />
+    <ClCompile Include="src\webServer.cpp" />
+    <ClCompile Include="test\cmd.cpp" />
+    <ClCompile Include="test\main.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\dependencies\lua\src\Makefile" />

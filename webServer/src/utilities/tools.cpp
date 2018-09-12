@@ -1,5 +1,5 @@
 #include "tools.h"
-#include <inttypes.h>
+
 
 http_msg::http_msg()
 {}
@@ -143,64 +143,7 @@ namespace tools {
 
 		return g_s_tmp_buff;
 	}
-
-	// hash
-	uint32 getBufHash(const void *buf, uint32 len)
-	{
-		uint32 seed = 131; // 31 131 1313 13131 131313 etc..
-		uint32 hash = 0;
-		uint32 i = 0;
-		char *str = (char *)buf;
-		while (i < len)
-		{
-			hash = hash * seed + (*str++);
-			++i;
-		}
-
-		return (hash & 0x7FFFFFFF);
-	}
-
-	std::string create_activ_code(int curIndex)
-	{
-		const static int bufLen = 128;
-		static char szBuf[bufLen];
-
-		// 时间戳
-		time_t curTime = time(NULL);
-		memset(szBuf, 0, sizeof(szBuf));
-		sprintf(szBuf, "%lld", curTime);
-
-		std::string key = szBuf;
-		key.append("-");
-
-		// 下标
-		uint32 hash = getBufHash(&curIndex, sizeof(curIndex));
-		memset(szBuf, 0, sizeof(szBuf));
-		sprintf(szBuf, "%u", hash);
-
-		key.append(szBuf);
-		key.append("-");
-
-		// 随机尾部
-		memset(szBuf, 0, sizeof(szBuf));
-		for (int i = 0; i < bufLen / 2; ++i)
-		{
-			szBuf[i] = (std::rand() % 255);
-		}
-
-		MD5 M;
-		M.update(szBuf);
-		std::string md5str = M.toString();
-
-		hash = getBufHash(md5str.c_str(), md5str.size());
-		memset(szBuf, 0, sizeof(szBuf));
-		sprintf(szBuf, "%u", hash);
-
-		key.append(szBuf);
-
-		return key;
-	}
-
+		
 	std::string& string_replace_all(std::string& str, const std::string& old_value, const std::string& new_value)
 	{
 		while (true) {
@@ -221,49 +164,5 @@ namespace tools {
 		if (str.back() != '/' && str.back() != '\\')
 			str.append("/");
 		return str;
-	}
-
-	std::vector<std::string> get_cmd_params(const std::string& cmd)
-	{
-		std::vector<std::string> out;
-
-		bool begin_res = false;
-		int begin_pos = 0;
-		for (auto i = 0; i < cmd.size(); ++i)
-		{
-			if (!begin_res)
-			{
-				if (cmd[i] != ' ')
-				{
-					begin_res = true;
-					begin_pos = i;
-				}
-			}
-			else
-			{
-				if (cmd[i] == ' ')
-				{
-					out.push_back(cmd.substr(begin_pos, i - begin_pos));
-					begin_res = false;
-				}
-			}
-		}
-
-		if (begin_res)
-		{
-			out.push_back(cmd.substr(begin_pos, cmd.size() - begin_pos));
-		}
-
-		return out;
-	}
-
-	bool check_cmd_is_number(const std::string& cmd)
-	{
-		for (int i = 0; i < cmd.size(); ++i)
-		{
-			if (cmd[i] < '0' || cmd[i] > '9')
-				return false;
-		}
-		return true;
 	}
 }

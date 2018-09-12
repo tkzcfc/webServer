@@ -1,9 +1,8 @@
 #pragma once
 
-#include "mongoose.h"
-#include <string>
+
+#include "webServerDef.h"
 #include <vector>
-#include "md5.h"
 
 class http_msg
 {
@@ -35,21 +34,12 @@ protected:
 
 namespace tools
 {
-
 	void print_http_message(http_message* msg);
 
 	std::string get_http_var(const std::string& buff, const std::string& name);
 
-	std::string create_activ_code(int curIndex);
-
-	uint32 getBufHash(const void *buf, uint32 len);
-
 	std::string& string_replace_all(std::string& str, const std::string& old_value, const std::string& new_value);
 
 	std::string inspect_dir_path(std::string& str);
-
-	std::vector<std::string> get_cmd_params(const std::string& cmd);
-
-	bool check_cmd_is_number(const std::string& cmd);
 
 }

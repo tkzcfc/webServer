@@ -1,19 +1,8 @@
 ﻿#include <iostream>
-#include "webServer.h"
-#include "tools.h"
-
-extern "C"
-{
-#include "lua.h"
-#include "lualib.h"
-#include "lauxlib.h"
-#include "lua-module/lfs/lfs.h"
-}
-#include "lua-module/web_tolua.h"
-#include "log.h"
 #include <thread>
 #include "linenoise.h"
 #include "cmd.h"
+#include "log.h"
 
 bool exit_main_thread = false;
 bool exit_log_thread = false;
@@ -92,7 +81,7 @@ void cmd_resolve(const std::string& cmd)
 	if (cmd.empty())
 		return;
 
-	std::vector<std::string> params = tools::get_cmd_params(cmd);
+	std::vector<std::string> params = get_cmd_params(cmd);
 
 	if (params.empty())
 		return;
@@ -124,7 +113,7 @@ void cmd_resolve(const std::string& cmd)
 			log_print("server key is nil");
 			return;
 		}
-		if (!tools::check_cmd_is_number(params[1]))
+		if (!check_cmd_is_number(params[1]))
 		{
 			log_print("server key is invalid");
 			return;
@@ -138,7 +127,7 @@ void cmd_resolve(const std::string& cmd)
 			log_print("server key is nil");
 			return;
 		}
-		if (!tools::check_cmd_is_number(params[1]))
+		if (!check_cmd_is_number(params[1]))
 		{
 			log_print("server key is invalid");
 			return;
@@ -152,7 +141,7 @@ void cmd_resolve(const std::string& cmd)
 			log_print("server key is nil");
 			return;
 		}
-		if (!tools::check_cmd_is_number(params[1]))
+		if (!check_cmd_is_number(params[1]))
 		{
 			log_print("server key is invalid");
 			return;

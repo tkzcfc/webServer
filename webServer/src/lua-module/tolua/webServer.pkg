@@ -10,6 +10,16 @@ enum METHOD
 	ALL
 };
 
+struct web_server_config
+{
+	std::string port;
+	bool enable_directory_listing;
+	std::string web_root;
+	std::string lua_root;
+	std::string lua_start_file;
+	std::string server_name;
+};
+
 class webServer
 {
 public:
@@ -33,5 +43,9 @@ public:
 	void print_log(const std::string& logstr);
 	
 	void goto_web(mg_connection* connection, http_message* http_req);
+	
+	web_server_config* get_config();
+	
+	mg_mgr* get_mgr();
 };
 

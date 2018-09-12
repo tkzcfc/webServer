@@ -1,6 +1,6 @@
 /*
 ** Lua binding: run
-** Generated automatically by tolua++-1.0.92 on Tue Sep 11 18:37:41 2018.
+** Generated automatically by tolua++-1.0.92 on Wed Sep 12 16:51:19 2018.
 */
 
 #ifndef __cplusplus
@@ -34,11 +34,13 @@ static int tolua_collect_http_msg (lua_State* tolua_S)
 /* function to register type */
 static void tolua_reg_types (lua_State* tolua_S)
 {
- tolua_usertype(tolua_S,"mg_connection");
- tolua_usertype(tolua_S,"http_msg");
- tolua_usertype(tolua_S,"http_message");
+ tolua_usertype(tolua_S,"mg_mgr");
  tolua_usertype(tolua_S,"webServer");
  
+ tolua_usertype(tolua_S,"http_msg");
+ tolua_usertype(tolua_S,"http_message");
+ tolua_usertype(tolua_S,"mg_connection");
+ tolua_usertype(tolua_S,"web_server_config");
  tolua_usertype(tolua_S,"call_func");
 }
 
@@ -540,32 +542,183 @@ static int tolua_run_get_http_var00(lua_State* tolua_S)
 }
 #endif //#ifndef TOLUA_DISABLE
 
-/* function: create_activ_code */
-#ifndef TOLUA_DISABLE_tolua_run_create_activ_code00
-static int tolua_run_create_activ_code00(lua_State* tolua_S)
+/* get function: port of class  web_server_config */
+#ifndef TOLUA_DISABLE_tolua_get_web_server_config_port
+static int tolua_get_web_server_config_port(lua_State* tolua_S)
 {
+  web_server_config* self = (web_server_config*)  tolua_tousertype(tolua_S,1,0);
 #ifndef TOLUA_RELEASE
- tolua_Error tolua_err;
- if (
-     !tolua_isnumber(tolua_S,1,0,&tolua_err) ||
-     !tolua_isnoobj(tolua_S,2,&tolua_err)
- )
-  goto tolua_lerror;
- else
+  if (!self) tolua_error(tolua_S,"invalid 'self' in accessing variable 'port'",NULL);
 #endif
- {
-  int curIndex = ((int)  tolua_tonumber(tolua_S,1,0));
-  {
-   std::string tolua_ret = (std::string)  create_activ_code(curIndex);
-   tolua_pushcppstring(tolua_S,(const char*)tolua_ret);
-  }
- }
+  tolua_pushcppstring(tolua_S,(const char*)self->port);
  return 1;
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* set function: port of class  web_server_config */
+#ifndef TOLUA_DISABLE_tolua_set_web_server_config_port
+static int tolua_set_web_server_config_port(lua_State* tolua_S)
+{
+  web_server_config* self = (web_server_config*)  tolua_tousertype(tolua_S,1,0);
 #ifndef TOLUA_RELEASE
- tolua_lerror:
- tolua_error(tolua_S,"#ferror in function 'create_activ_code'.",&tolua_err);
- return 0;
+  tolua_Error tolua_err;
+  if (!self) tolua_error(tolua_S,"invalid 'self' in accessing variable 'port'",NULL);
+  if (!tolua_iscppstring(tolua_S,2,0,&tolua_err))
+   tolua_error(tolua_S,"#vinvalid type in variable assignment.",&tolua_err);
 #endif
+  self->port = ((std::string)  tolua_tocppstring(tolua_S,2,0))
+;
+ return 0;
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* get function: enable_directory_listing of class  web_server_config */
+#ifndef TOLUA_DISABLE_tolua_get_web_server_config_enable_directory_listing
+static int tolua_get_web_server_config_enable_directory_listing(lua_State* tolua_S)
+{
+  web_server_config* self = (web_server_config*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in accessing variable 'enable_directory_listing'",NULL);
+#endif
+  tolua_pushboolean(tolua_S,(bool)self->enable_directory_listing);
+ return 1;
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* set function: enable_directory_listing of class  web_server_config */
+#ifndef TOLUA_DISABLE_tolua_set_web_server_config_enable_directory_listing
+static int tolua_set_web_server_config_enable_directory_listing(lua_State* tolua_S)
+{
+  web_server_config* self = (web_server_config*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  tolua_Error tolua_err;
+  if (!self) tolua_error(tolua_S,"invalid 'self' in accessing variable 'enable_directory_listing'",NULL);
+  if (!tolua_isboolean(tolua_S,2,0,&tolua_err))
+   tolua_error(tolua_S,"#vinvalid type in variable assignment.",&tolua_err);
+#endif
+  self->enable_directory_listing = ((bool)  tolua_toboolean(tolua_S,2,0))
+;
+ return 0;
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* get function: web_root of class  web_server_config */
+#ifndef TOLUA_DISABLE_tolua_get_web_server_config_web_root
+static int tolua_get_web_server_config_web_root(lua_State* tolua_S)
+{
+  web_server_config* self = (web_server_config*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in accessing variable 'web_root'",NULL);
+#endif
+  tolua_pushcppstring(tolua_S,(const char*)self->web_root);
+ return 1;
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* set function: web_root of class  web_server_config */
+#ifndef TOLUA_DISABLE_tolua_set_web_server_config_web_root
+static int tolua_set_web_server_config_web_root(lua_State* tolua_S)
+{
+  web_server_config* self = (web_server_config*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  tolua_Error tolua_err;
+  if (!self) tolua_error(tolua_S,"invalid 'self' in accessing variable 'web_root'",NULL);
+  if (!tolua_iscppstring(tolua_S,2,0,&tolua_err))
+   tolua_error(tolua_S,"#vinvalid type in variable assignment.",&tolua_err);
+#endif
+  self->web_root = ((std::string)  tolua_tocppstring(tolua_S,2,0))
+;
+ return 0;
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* get function: lua_root of class  web_server_config */
+#ifndef TOLUA_DISABLE_tolua_get_web_server_config_lua_root
+static int tolua_get_web_server_config_lua_root(lua_State* tolua_S)
+{
+  web_server_config* self = (web_server_config*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in accessing variable 'lua_root'",NULL);
+#endif
+  tolua_pushcppstring(tolua_S,(const char*)self->lua_root);
+ return 1;
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* set function: lua_root of class  web_server_config */
+#ifndef TOLUA_DISABLE_tolua_set_web_server_config_lua_root
+static int tolua_set_web_server_config_lua_root(lua_State* tolua_S)
+{
+  web_server_config* self = (web_server_config*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  tolua_Error tolua_err;
+  if (!self) tolua_error(tolua_S,"invalid 'self' in accessing variable 'lua_root'",NULL);
+  if (!tolua_iscppstring(tolua_S,2,0,&tolua_err))
+   tolua_error(tolua_S,"#vinvalid type in variable assignment.",&tolua_err);
+#endif
+  self->lua_root = ((std::string)  tolua_tocppstring(tolua_S,2,0))
+;
+ return 0;
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* get function: lua_start_file of class  web_server_config */
+#ifndef TOLUA_DISABLE_tolua_get_web_server_config_lua_start_file
+static int tolua_get_web_server_config_lua_start_file(lua_State* tolua_S)
+{
+  web_server_config* self = (web_server_config*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in accessing variable 'lua_start_file'",NULL);
+#endif
+  tolua_pushcppstring(tolua_S,(const char*)self->lua_start_file);
+ return 1;
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* set function: lua_start_file of class  web_server_config */
+#ifndef TOLUA_DISABLE_tolua_set_web_server_config_lua_start_file
+static int tolua_set_web_server_config_lua_start_file(lua_State* tolua_S)
+{
+  web_server_config* self = (web_server_config*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  tolua_Error tolua_err;
+  if (!self) tolua_error(tolua_S,"invalid 'self' in accessing variable 'lua_start_file'",NULL);
+  if (!tolua_iscppstring(tolua_S,2,0,&tolua_err))
+   tolua_error(tolua_S,"#vinvalid type in variable assignment.",&tolua_err);
+#endif
+  self->lua_start_file = ((std::string)  tolua_tocppstring(tolua_S,2,0))
+;
+ return 0;
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* get function: server_name of class  web_server_config */
+#ifndef TOLUA_DISABLE_tolua_get_web_server_config_server_name
+static int tolua_get_web_server_config_server_name(lua_State* tolua_S)
+{
+  web_server_config* self = (web_server_config*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in accessing variable 'server_name'",NULL);
+#endif
+  tolua_pushcppstring(tolua_S,(const char*)self->server_name);
+ return 1;
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* set function: server_name of class  web_server_config */
+#ifndef TOLUA_DISABLE_tolua_set_web_server_config_server_name
+static int tolua_set_web_server_config_server_name(lua_State* tolua_S)
+{
+  web_server_config* self = (web_server_config*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  tolua_Error tolua_err;
+  if (!self) tolua_error(tolua_S,"invalid 'self' in accessing variable 'server_name'",NULL);
+  if (!tolua_iscppstring(tolua_S,2,0,&tolua_err))
+   tolua_error(tolua_S,"#vinvalid type in variable assignment.",&tolua_err);
+#endif
+  self->server_name = ((std::string)  tolua_tocppstring(tolua_S,2,0))
+;
+ return 0;
 }
 #endif //#ifndef TOLUA_DISABLE
 
@@ -911,6 +1064,70 @@ static int tolua_run_webServer_goto_web00(lua_State* tolua_S)
 }
 #endif //#ifndef TOLUA_DISABLE
 
+/* method: get_config of class  webServer */
+#ifndef TOLUA_DISABLE_tolua_run_webServer_get_config00
+static int tolua_run_webServer_get_config00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"webServer",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  webServer* self = (webServer*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'get_config'", NULL);
+#endif
+  {
+   web_server_config* tolua_ret = (web_server_config*)  self->get_config();
+    tolua_pushusertype(tolua_S,(void*)tolua_ret,"web_server_config");
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'get_config'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: get_mgr of class  webServer */
+#ifndef TOLUA_DISABLE_tolua_run_webServer_get_mgr00
+static int tolua_run_webServer_get_mgr00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"webServer",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  webServer* self = (webServer*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'get_mgr'", NULL);
+#endif
+  {
+   mg_mgr* tolua_ret = (mg_mgr*)  self->get_mgr();
+    tolua_pushusertype(tolua_S,(void*)tolua_ret,"mg_mgr");
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'get_mgr'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
 /* Open function */
 TOLUA_API int tolua_run_open (lua_State* tolua_S)
 {
@@ -947,11 +1164,19 @@ TOLUA_API int tolua_run_open (lua_State* tolua_S)
   tolua_endmodule(tolua_S);
   tolua_function(tolua_S,"print_http_message",tolua_run_print_http_message00);
   tolua_function(tolua_S,"get_http_var",tolua_run_get_http_var00);
-  tolua_function(tolua_S,"create_activ_code",tolua_run_create_activ_code00);
   tolua_constant(tolua_S,"GET",GET);
   tolua_constant(tolua_S,"PUT",PUT);
   tolua_constant(tolua_S,"POST",POST);
   tolua_constant(tolua_S,"ALL",ALL);
+  tolua_cclass(tolua_S,"web_server_config","web_server_config","",NULL);
+  tolua_beginmodule(tolua_S,"web_server_config");
+   tolua_variable(tolua_S,"port",tolua_get_web_server_config_port,tolua_set_web_server_config_port);
+   tolua_variable(tolua_S,"enable_directory_listing",tolua_get_web_server_config_enable_directory_listing,tolua_set_web_server_config_enable_directory_listing);
+   tolua_variable(tolua_S,"web_root",tolua_get_web_server_config_web_root,tolua_set_web_server_config_web_root);
+   tolua_variable(tolua_S,"lua_root",tolua_get_web_server_config_lua_root,tolua_set_web_server_config_lua_root);
+   tolua_variable(tolua_S,"lua_start_file",tolua_get_web_server_config_lua_start_file,tolua_set_web_server_config_lua_start_file);
+   tolua_variable(tolua_S,"server_name",tolua_get_web_server_config_server_name,tolua_set_web_server_config_server_name);
+  tolua_endmodule(tolua_S);
   tolua_cclass(tolua_S,"webServer","webServer","",NULL);
   tolua_beginmodule(tolua_S,"webServer");
    tolua_function(tolua_S,"restart",tolua_run_webServer_restart00);
@@ -964,6 +1189,8 @@ TOLUA_API int tolua_run_open (lua_State* tolua_S)
    tolua_function(tolua_S,"get_method",tolua_run_webServer_get_method00);
    tolua_function(tolua_S,"print_log",tolua_run_webServer_print_log00);
    tolua_function(tolua_S,"goto_web",tolua_run_webServer_goto_web00);
+   tolua_function(tolua_S,"get_config",tolua_run_webServer_get_config00);
+   tolua_function(tolua_S,"get_mgr",tolua_run_webServer_get_mgr00);
   tolua_endmodule(tolua_S);
  tolua_endmodule(tolua_S);
  return 1;

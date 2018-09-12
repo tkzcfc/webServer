@@ -1,5 +1,6 @@
-remove 0
-exit
+restart 1
+new web_2
 new web_1
+new web_2
+res_print
 exit
-new web_1

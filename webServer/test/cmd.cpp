@@ -1,7 +1,6 @@
 #include "cmd.h"
 #include "webServer.h"
 #include "log.h"
-#include "lua-module/web_tolua.h"
 
 
 std::map<int, webServer*> server_list;
@@ -17,9 +16,7 @@ void start_new_server(const std::string& root_dir)
 		return;
 	}
 
-	bool suc = svr->start(root_dir, [](lua_State* L) {
-		tolua_run_open(L);
-	});
+	bool suc = svr->start(root_dir);
 
 	if (!suc)
 	{
@@ -109,4 +106,48 @@ void print_server_list()
 	{
 		log_print("--\t-\t --\t --");
 	}
+}
+
+std::vector<std::string> get_cmd_params(const std::string& cmd)
+{
+	std::vector<std::string> out;
+
+	bool begin_res = false;
+	int begin_pos = 0;
+	for (auto i = 0; i < cmd.size(); ++i)
+	{
+		if (!begin_res)
+		{
+			if (cmd[i] != ' ')
+			{
+				begin_res = true;
+				begin_pos = i;
+			}
+		}
+		else
+		{
+			if (cmd[i] == ' ')
+			{
+				out.push_back(cmd.substr(begin_pos, i - begin_pos));
+				begin_res = false;
+			}
+		}
+	}
+
+	if (begin_res)
+	{
+		out.push_back(cmd.substr(begin_pos, cmd.size() - begin_pos));
+	}
+
+	return out;
+}
+
+bool check_cmd_is_number(const std::string& cmd)
+{
+	for (int i = 0; i < cmd.size(); ++i)
+	{
+		if (cmd[i] < '0' || cmd[i] > '9')
+			return false;
+	}
+	return true;
 }

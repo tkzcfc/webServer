@@ -1,0 +1,71 @@
+$[
+
+local lfs = require("lfs")
+
+local all_path_tab = {}
+local function push_path(_isdir, _path)
+	table.insert(all_path_tab, {isdir = _isdir, path = _path})
+end
+
+--文件遍历
+local function func(rootpath)
+	for entry in lfs.dir(rootpath) do  
+        if entry ~= '.' and entry ~= '..' then  
+            local path = rootpath .. '/' .. entry  
+            local attr = lfs.attributes(path)  
+            if attr.mode == 'directory' then
+				push_path(true, path..'/')
+            else
+				push_path(false, path)
+            end
+			func(path)
+        end  
+    end
+end
+
+local function res_print()
+	--重定义输出
+	print = function(...)
+		local str = table.concat({ ... }, "\t")
+		serverInstance:print_log(str)
+	end
+end
+
+local function doit()
+	res_print()
+	
+	local rootpath = serverInstance:get_config().web_root
+	if rootpath == nil or rootpath == "" then
+		return
+	end
+	
+	if rootpath == "." then
+		rootpath = lfs.currentdir()
+	end
+
+	local repstr = string.char(92)
+	rootpath = string.gsub(rootpath, repstr, '/')
+	if rootpath[#rootpath] == '/' then
+		rootpath = string.sub(rootpath, 1, #rootpath - 1)
+	end
+	
+	push_path(true, "/")
+	func(rootpath)
+	
+	--注册回调
+	for k, v in pairs(all_path_tab) do
+		local curKey = string.gsub(v.path, rootpath, "")
+		--print(curKey)
+		serverInstance:register_call(ALL, curKey, function(svr, connection, http_msg)
+			svr:goto_web(connection, http_msg:get_http_message_ptr())
+		end)
+	end
+end
+
+local err,msg = pcall(doit)
+if not err then
+ local _,_,label,msg = strfind(msg,"(.-:.-:%s*)(.*)")
+ tolua_error(msg,label)
+ print(debug.traceback())
+end
+$]

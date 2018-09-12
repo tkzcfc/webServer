@@ -1,0 +1,7 @@
+.vs/
+Bin/
+webServer/Debug
+webServer/Release
+webServer/log
+webServer/history.txt
+webServer.VC.db

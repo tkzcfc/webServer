@@ -1,6 +1,8 @@
 #include "webServer.h"
 #include "tools.h"
 #include "log.h"
+#include "LuaInlayCode.h"
+#include "web_tolua.h"
 
 extern "C"
 {
@@ -14,14 +16,14 @@ static const char* method_name[METHOD::ALL] = {
 };
 
 webServer::webServer()
-{
-	m_start = false;
-	m_isinvalid = false;
-	m_mgr = NULL;
-	m_stateL = NULL;
-	m_config = NULL;
-	m_thread = NULL;
-}
+	: m_connection(NULL)
+	, m_mgr(NULL)
+	, m_stateL(NULL)
+	, m_config(NULL)
+	, m_thread(NULL)
+	, m_start(false)
+	, m_isinvalid(false)
+{}
 
 webServer::~webServer()
 {
@@ -172,12 +174,16 @@ bool webServer::loadconfig(const std::string& config_path)
 
 	lua_close(L);
 
-	tools::inspect_dir_path(m_config->web_root);
+	if (m_config->web_root != ".")
+	{
+		tools::inspect_dir_path(m_config->web_root);
+	}
 	tools::inspect_dir_path(m_config->lua_root);
-
-	if (m_config->web_root.empty())
-		m_config->web_root = ".";
 	
+	if (m_config->web_root.empty())
+	{
+		m_config->web_root = ".";
+	}
 	return true;
 }
 
@@ -189,52 +195,15 @@ bool webServer::update_server_parameters()
 
 	m_mgr = (mg_mgr*)malloc(sizeof(mg_mgr));
 	mg_mgr_init(m_mgr, NULL);
-	mg_connection *connection = mg_bind(m_mgr, m_config->port.c_str(), g_on_http_event);
+	m_connection = mg_bind(m_mgr, m_config->port.c_str(), g_on_http_event);
 
-	if (connection == NULL)
+	if (m_connection == NULL)
 		return false;
 
-	connection->user_data = this;
-	mg_set_protocol_http_websocket(connection);
+	m_connection->user_data = this;
+	mg_set_protocol_http_websocket(m_connection);
 
-	lua_State* L = luaL_newstate();
-
-	luaL_openlibs(L);
-	if (m_register_call != nullptr)
-	{
-		m_register_call(L);
-	}
-
-	tolua_pushusertype(L, this, "webServer");
-	lua_setglobal(L, "serverInstance");
-
-	std::string fullpath = m_config->lua_root;
-	fullpath.append("?.lua;");
-
-	std::string start_fullpath = m_config->lua_root;
-	start_fullpath.append(m_config->lua_start_file);
-
-	lua_pushstring(L, fullpath.c_str());
-	lua_setglobal(L, "__path");
-
-	const char* lua_start_script =
-		"print = function(...)"
-		"local str = table.concat({ ... }, \"\t\")"
-		"serverInstance:print_log(str)"
-		"end\n"
-		"package.path = package.path..';'..__path\n"
-		"__path = nil\n";
-	luaL_dostring(L, lua_start_script);
-
-	if (luaL_dofile(L, start_fullpath.c_str()) != 0)
-	{
-		fprintf(stderr, "ERROR:%s\n\n", lua_tostring(L, -1));
-		return false;
-	}
-
-	m_stateL = L;
-
-	return true;
+	return start_lua_state();
 }
 
 void webServer::do_server_poll()
@@ -416,9 +385,6 @@ void webServer::goto_web(mg_connection* connection, http_message* http_req)
 
 void webServer::on_http_request(mg_connection *connection, http_message *http_req)
 {
-	//std::string req_str = std::string(http_req->message.p, http_req->message.len);
-	//printf("got request: %s\n", req_str.c_str());
-
 	uint32_t remote_ip = (*(uint32_t *)&connection->sa.sin.sin_addr);
 	uint8_t* p = (uint8_t*)&remote_ip;
 
@@ -455,6 +421,53 @@ void webServer::on_http_request(mg_connection *connection, http_message *http_re
 		"%s",
 		"HTTP/1.1 501 Not Implemented\r\n"
 		"Content-Length: 0\r\n\r\n");
+}
+
+bool webServer::start_lua_state()
+{
+	lua_State* L = luaL_newstate();
+
+	luaL_openlibs(L);
+	luaopen_lfs(L);
+	tolua_run_open(L);
+
+	tolua_pushusertype(L, this, "webServer");
+	lua_setglobal(L, "serverInstance");
+
+	tolua_InlayCode_open(L);
+
+	if (m_register_call != nullptr)
+	{
+		m_register_call(L);
+	}
+	if (m_config->lua_start_file.empty())
+	{
+		m_stateL = L;
+		return true;
+	}
+
+	std::string fullpath = m_config->lua_root;
+	fullpath.append("?.lua;");
+
+	std::string start_fullpath = m_config->lua_root;
+	start_fullpath.append(m_config->lua_start_file);
+
+	lua_pushstring(L, fullpath.c_str());
+	lua_setglobal(L, "__path");
+
+	const char* lua_start_script =
+		"package.path = package.path..';'..__path\n"
+		"__path = nil\n";
+	luaL_dostring(L, lua_start_script);
+
+	if (luaL_dofile(L, start_fullpath.c_str()) != 0)
+	{
+		fprintf(stderr, "ERROR:%s\n\n", lua_tostring(L, -1));
+		return false;
+	}
+
+	m_stateL = L;
+	return true;
 }
 
 //////////////////////////////////////////////////////////////////////////

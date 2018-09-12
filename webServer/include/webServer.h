@@ -1,19 +1,13 @@
 #pragma once
 
-#include "mongoose.h"
-#include <string>
+#include "webServerDef.h"
 #include <map>
 #include <functional>
-#include "LuaFunction.hpp"
 #include <thread>
+#include "LuaFunction.hpp"
 
 
-extern "C"
-{
-#include "lua.h"
-#include "lualib.h"
-#include "lauxlib.h"
-}
+
 
 enum METHOD
 {
@@ -61,16 +55,20 @@ public:
 	METHOD get_method(http_message *http_req);
 
 	void print_log(const std::string& logstr);
-	
+
 	void goto_web(mg_connection* connection, http_message* http_req);
 
 	inline web_server_config* get_config() { return m_config; }
 
 	inline bool isstop() { return !m_start; }
 
-	bool isinvalid() { return m_isinvalid;	}
+	bool isinvalid() { return m_isinvalid; }
 
 	const std::string& get_server_tag();
+
+	inline mg_connection* get_connection() { return m_connection; }
+
+	inline mg_mgr* get_mgr() { return m_mgr; }
 
 protected:
 
@@ -86,9 +84,13 @@ protected:
 
 	void clear();
 
+	// 启动lua虚拟机
+	bool start_lua_state();
+
 public:
 	mg_serve_http_opts m_server_option; // web服务器选项
 	mg_mgr* m_mgr;						// 连接管理器
+	mg_connection* m_connection;		// 链接
 protected:
 	std::map<std::string, call_func > m_calls[METHOD::ALL + 1];
 	std::map<std::string, LuaFunction* > m_lua_calls[METHOD::ALL + 1];
