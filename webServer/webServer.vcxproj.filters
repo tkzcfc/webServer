@@ -46,9 +46,6 @@
     <ClInclude Include="include\webServer.h">
       <Filter>include</Filter>
     </ClInclude>
-    <ClInclude Include="include\utilities\LuaFunction.hpp">
-      <Filter>include\utilities</Filter>
-    </ClInclude>
     <ClInclude Include="include\utilities\tolua_fix.h">
       <Filter>include\utilities</Filter>
     </ClInclude>
@@ -156,6 +153,9 @@
     </ClInclude>
     <ClInclude Include="test\cmd.h">
       <Filter>test</Filter>
+    </ClInclude>
+    <ClInclude Include="include\utilities\LuaFunction.h">
+      <Filter>include\utilities</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

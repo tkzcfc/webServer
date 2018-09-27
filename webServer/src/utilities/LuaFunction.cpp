@@ -1,14 +1,18 @@
-﻿#include "LuaFunction.hpp"
+﻿#include "LuaFunction.h"
 #include <assert.h>
 
-LuaRef::LuaRef() : L(nullptr), ref_(LUA_NOREF)
+LuaRef::LuaRef() 
+	: L(nullptr)
+	, m_ref(LUA_NOREF)
 {
 }
 
-LuaRef::LuaRef(lua_State* aL, int index) : L(aL), ref_(LUA_NOREF)
+LuaRef::LuaRef(lua_State* aL, int index) 
+	: L(aL)
+	, m_ref(LUA_NOREF)
 {
 	lua_pushvalue(L, index);
-	ref_ = luaL_ref(L, LUA_REGISTRYINDEX);
+	m_ref = luaL_ref(L, LUA_REGISTRYINDEX);
 }
 
 LuaRef::~LuaRef()
@@ -16,7 +20,9 @@ LuaRef::~LuaRef()
 	unref();
 }
 
-LuaRef::LuaRef(const LuaRef& other) : L(nullptr), ref_(LUA_NOREF)
+LuaRef::LuaRef(const LuaRef& other) 
+	: L(nullptr)
+	, m_ref(LUA_NOREF)
 {
 	*this = other;
 }
@@ -32,7 +38,9 @@ LuaRef& LuaRef::operator=(const LuaRef& rhs)
 	return *this;
 }
 
-LuaRef::LuaRef(LuaRef&& other) : L(nullptr), ref_(LUA_NOREF)
+LuaRef::LuaRef(LuaRef&& other) 
+	: L(nullptr)
+	, m_ref(LUA_NOREF)
 {
 	*this = std::move(other);
 }
@@ -44,56 +52,63 @@ LuaRef& LuaRef::operator=(LuaRef&& rhs)
 		unref();
 
 		L = rhs.L;
-		ref_ = rhs.ref_;
+		m_ref = rhs.m_ref;
 
 		rhs.L = nullptr;
-		rhs.ref_ = LUA_NOREF;
+		rhs.m_ref = LUA_NOREF;
 	}
 	return *this;
 }
 
 LuaRef::operator bool() const
 {
-	return ref_ != LUA_NOREF;
+	return m_ref != LUA_NOREF;
 }
 
 void LuaRef::reset(lua_State* aL, int index)
 {
 	unref();
-	if (aL != nullptr) {
+	if (aL != nullptr) 
+	{
 		L = aL;
 		lua_pushvalue(L, index);
-		ref_ = luaL_ref(L, LUA_REGISTRYINDEX);
+		m_ref = luaL_ref(L, LUA_REGISTRYINDEX);
 	}
 }
 
 void LuaRef::push() const
 {
-	lua_rawgeti(L, LUA_REGISTRYINDEX, ref_);
-}
-
-lua_State* LuaRef::state() const
-{
-	return L;
+	lua_rawgeti(L, LUA_REGISTRYINDEX, m_ref);
 }
 
 void LuaRef::unref() const
 {
-	if (L && ref_ != LUA_NOREF && ref_ != LUA_REFNIL)
-		luaL_unref(L, LUA_REGISTRYINDEX, ref_);
+	if (L && m_ref != LUA_NOREF && m_ref != LUA_REFNIL)
+	{
+		luaL_unref(L, LUA_REGISTRYINDEX, m_ref);
+	}
 }
 
 
-LuaFunction::LuaFunction() : LuaRef(), m_trackback(0)
+
+LuaFunction::LuaFunction()
+	: LuaRef()
+	, m_trackback(0)
+	, m_isValid(true)
 {
 }
 
-LuaFunction::LuaFunction(lua_State* aL, int index, int) : LuaRef(aL, index), m_trackback(0)
+LuaFunction::LuaFunction(lua_State* aL, int index, int) 
+	: LuaRef(aL, index)
+	, m_trackback(0)
+	, m_isValid(true)
 {
 	luaL_checktype(aL, index, LUA_TFUNCTION);
 }
 
-LuaFunction::LuaFunction(const LuaFunction& other) : LuaRef()
+LuaFunction::LuaFunction(const LuaFunction& other) 
+	: LuaRef()
+	, m_isValid(true)
 {
 	*this = other;
 }
@@ -106,11 +121,15 @@ LuaFunction& LuaFunction::operator=(const LuaFunction& rhs)
 		luaL_checktype(rhs.L, -1, LUA_TFUNCTION);
 		reset(rhs.L, -1);
 		lua_pop(L, 1);
+
+		m_isValid = rhs.m_isValid;
 	}
 	return *this;
 }
 
-LuaFunction::LuaFunction(LuaFunction&& other) : LuaRef()
+LuaFunction::LuaFunction(LuaFunction&& other) 
+	: LuaRef()
+	, m_isValid(true)
 {
 	*this = std::move(other);
 }
@@ -127,10 +146,12 @@ LuaFunction& LuaFunction::operator=(LuaFunction&& rhs)
 		unref();
 
 		L = rhs.L;
-		ref_ = rhs.ref_;
+		m_ref = rhs.m_ref;
 
 		rhs.L = nullptr;
-		rhs.ref_ = LUA_NOREF;
+		rhs.m_ref = LUA_NOREF;
+
+		m_isValid = rhs.m_isValid;
 	}
 	return *this;
 }
@@ -175,6 +196,11 @@ void LuaFunction::pcall(int nresults/* = 0*/)
 				m_retValues[index].type = type;
 				m_retValues[index].value.boolValue = (bool)lua_toboolean(L, i);
 			}break;
+			case LUA_TLIGHTUSERDATA:
+			{
+				m_retValues[index].type = type;
+				m_retValues[index].value.userdata = *((void**)lua_touserdata(L, i));
+			}break;
 			case LUA_TNUMBER: 
 			{
 				m_retValues[index].type = type;
@@ -184,6 +210,11 @@ void LuaFunction::pcall(int nresults/* = 0*/)
 			{
 				m_retValues[index].type = type;
 				m_retValues[index].value.stringValue = new std::string(lua_tostring(L, i));
+			}break;
+			case LUA_TUSERDATA:
+			{
+				m_retValues[index].type = type;
+				m_retValues[index].value.userdata = *((void**)lua_touserdata(L, i));
 			}break;
 			default:
 				assert(0);
@@ -301,13 +332,36 @@ std::string LuaFunction::retstring(int index/* = 0*/, const std::string& default
 	return defaultvalue;
 }
 
+void* LuaFunction::retuserdata(int index/* = 0*/)
+{
+	assert(index < MAX_RET_ARGS_COUNT && index >= 0);
+	if (index >= m_retCount)
+	{
+		return NULL;
+	}
+	if (m_retValues[index].type == LUA_TUSERDATA)
+	{
+		return m_retValues[index].value.userdata;
+	}
+	return NULL;
+}
+
+void* LuaFunction::retlightuserdata(int index/* = 0*/)
+{
+	assert(index < MAX_RET_ARGS_COUNT && index >= 0);
+	if (index >= m_retCount)
+	{
+		return NULL;
+	}
+	if (m_retValues[index].type == LUA_TLIGHTUSERDATA)
+	{
+		return m_retValues[index].value.userdata;
+	}
+	return NULL;
+}
+
 int LuaFunction::checktype(int index/* = 0*/)
 {
 	assert(index < MAX_RET_ARGS_COUNT && index >= 0);
 	return m_retValues[index].type;
-}
-
-int LuaFunction::retcount()
-{
-	return m_retCount;
 }

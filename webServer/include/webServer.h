@@ -4,7 +4,7 @@
 #include <map>
 #include <functional>
 #include <thread>
-#include "LuaFunction.hpp"
+#include "LuaFunction.h"
 
 
 

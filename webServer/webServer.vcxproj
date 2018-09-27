@@ -177,7 +177,7 @@
     <ClInclude Include="..\dependencies\tolua++\include\tolua++.h" />
     <ClInclude Include="..\dependencies\tolua++\lib\tolua_event.h" />
     <ClInclude Include="include\utilities\log.h" />
-    <ClInclude Include="include\utilities\LuaFunction.hpp" />
+    <ClInclude Include="include\utilities\LuaFunction.h" />
     <ClInclude Include="include\utilities\tolua_fix.h" />
     <ClInclude Include="include\utilities\tools.h" />
     <ClInclude Include="include\webServer.h" />
